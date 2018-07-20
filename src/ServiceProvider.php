@@ -34,13 +34,7 @@ class ServiceProvider extends IluminateServiceProvider
         try {
             // set to 1 hour
             $settings = Cache::remember('larasettings', 60, function () {
-                return Setting::all()->map(function ($setting) {
-                    if (in_array($setting->value, ['true', 'false'])) {
-                        $setting->value = boolval($setting->value);
-                    }
-
-                    return $setting;
-                })->pluck('value', 'key');
+                return Setting::all()->pluck('value', 'key');
             });
 
             config($settings->toArray());
