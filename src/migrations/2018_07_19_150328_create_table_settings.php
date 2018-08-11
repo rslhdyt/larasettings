@@ -30,6 +30,6 @@ class CreateTableSettings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists(config('settings.table_name', 'settings'));
     }
 }
